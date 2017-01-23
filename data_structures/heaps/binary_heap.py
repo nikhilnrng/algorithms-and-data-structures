@@ -4,9 +4,12 @@ class BinaryHeap(object):
         self.heap = []
         self.size = 0
 
+    def is_empty(self):
+        return self.size == 0
+
     def has_parent(self, node):
         """Return True if node has a parent"""
-        return (node - 1) // 2 >= 0
+        return (node - 1) / 2 >= 0
 
     def has_rchild(self, node):
         """Return True if node has a right child"""
@@ -18,7 +21,7 @@ class BinaryHeap(object):
 
     def get_parent(self, node):
         """Return value of parent"""
-        return self.heap[(node - 1) // 2] if self.has_parent(node) else None
+        return self.heap[(node - 1) / 2] if self.has_parent(node) else None
 
     def get_rchild(self, node):
         """Return value of right child"""
@@ -48,9 +51,9 @@ class BinaryHeap(object):
 
             if node_val < parent_val:
                 # min-heap property not satisfied, swap parent and child
-                self.heap[(node - 1) // 2] = node_val # set parent to node
+                self.heap[(node - 1) / 2] = node_val # set parent to node
                 self.heap[node] = parent_val # set node to parent
-                node = (node - 1) // 2
+                node = (node - 1) / 2
             else:
                 # min-heap property satisfied
                 return
@@ -98,5 +101,5 @@ class BinaryHeap(object):
         if len(alist) <= 1:
             return
 
-        for i in range(len(alist) // 2 - 1, -1, -1):
+        for i in range(len(alist) / 2 - 1, -1, -1):
             self.perc_down(i)
