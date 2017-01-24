@@ -2,6 +2,7 @@ import os, sys, unittest
 sys.path.append(os.path.join(os.getcwd(), os.path.pardir))
 from algorithms.string.word_break import word_break
 from algorithms.string.reverse_words import reverse_words
+from algorithms.string.string_permutations import string_permutation, string_permutation_swap
 
 class TestStringAlgorithms(unittest.TestCase):
 
@@ -23,3 +24,9 @@ class TestStringAlgorithms(unittest.TestCase):
 
         reverse = reverse_words('a')
         self.assertEqual('a', reverse)
+
+    def test_string_permutations(self):
+        self.assertEqual(6, len(string_permutation('abc')))
+        self.assertEqual(6, len(string_permutation_swap('abc')))
+        self.assertEqual(24, len(string_permutation('abcc')))
+        self.assertEqual(24, len(string_permutation_swap('abcc')))
