@@ -3,6 +3,7 @@ sys.path.append(os.path.join(os.getcwd(), os.path.pardir))
 from algorithms.string.word_break import word_break
 from algorithms.string.reverse_words import reverse_words
 from algorithms.string.string_permutations import string_permutation, string_permutation_swap
+from algorithms.string.min_edits import min_edits
 
 class TestStringAlgorithms(unittest.TestCase):
 
@@ -30,3 +31,8 @@ class TestStringAlgorithms(unittest.TestCase):
         self.assertEqual(6, len(string_permutation_swap('abc')))
         self.assertEqual(24, len(string_permutation('abcc')))
         self.assertEqual(24, len(string_permutation_swap('abcc')))
+
+    def test_min_edits(self):
+        self.assertEqual(5, min_edits('intention', 'execution'))
+        self.assertEqual(7, min_edits('hello', 'goodbye'))
+        self.assertEqual(3, min_edits('programming', 'programmer'))
