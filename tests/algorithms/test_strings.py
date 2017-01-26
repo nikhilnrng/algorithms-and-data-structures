@@ -39,8 +39,21 @@ class TestStringAlgorithms(unittest.TestCase):
         self.assertEqual(3, min_edits('programming', 'programmer'))
 
     def test_max_as(self):
-        self.assertEqual(1, max_as(1))
-        self.assertEqual(2, max_as(2))
-        self.assertEqual(3, max_as(3))
-        self.assertEqual(9, max_as(7))
-        self.assertEqual(27, max_as(11))
+        self.assertEqual(max_as(1), 1)
+        self.assertEqual(max_as(2), 2)
+        self.assertEqual(max_as(3), 3)
+        self.assertEqual(max_as(4), 4)
+        self.assertEqual(max_as(5), 5)
+        self.assertEqual(max_as(6), 6)
+        self.assertEqual(max_as(7), 9)
+        self.assertEqual(max_as(8), 12)
+        self.assertEqual(max_as(9), 16)
+        self.assertEqual(max_as(10), 20)
+        self.assertEqual(max_as(11), 27)
+        self.assertEqual(max_as(12), 36)
+        self.assertEqual(max_as(13), 48)
+        self.assertEqual(max_as(14), 64)
+        self.assertEqual(max_as(15), 81)
+        self.assertEqual(max_as(16), 108)
+
+
