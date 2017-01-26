@@ -5,7 +5,8 @@ from algorithms.string.reverse_words import reverse_words
 from algorithms.string.string_permutations import string_permutation, string_permutation_swap
 from algorithms.string.min_edits import min_edits
 from algorithms.string.max_as import max_as
-from algorithms.string.parentheses_balanced import parentheses_balanced 
+from algorithms.string.parentheses_balanced import parentheses_balanced
+from algorithms.string.binary_strings import binary_strings
 
 class TestStringAlgorithms(unittest.TestCase):
 
@@ -63,3 +64,7 @@ class TestStringAlgorithms(unittest.TestCase):
         self.assertEqual('Invalid', parentheses_balanced('()(PHN(X))'))
         self.assertEqual('Valid', parentheses_balanced('(PHN(X))'))
         self.assertEqual('Valid', parentheses_balanced('((BCD)AE)'))
+
+    def test_binary_strings(self):
+        self.assertEqual(3, binary_strings(2))
+        self.assertEqual(5, binary_strings(3))
