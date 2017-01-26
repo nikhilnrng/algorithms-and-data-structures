@@ -4,6 +4,7 @@ from algorithms.string.word_break import word_break
 from algorithms.string.reverse_words import reverse_words
 from algorithms.string.string_permutations import string_permutation, string_permutation_swap
 from algorithms.string.min_edits import min_edits
+from algorithms.string.max_as import max_as
 
 class TestStringAlgorithms(unittest.TestCase):
 
@@ -36,3 +37,10 @@ class TestStringAlgorithms(unittest.TestCase):
         self.assertEqual(5, min_edits('intention', 'execution'))
         self.assertEqual(7, min_edits('hello', 'goodbye'))
         self.assertEqual(3, min_edits('programming', 'programmer'))
+
+    def test_max_as(self):
+        self.assertEqual(1, max_as(1))
+        self.assertEqual(2, max_as(2))
+        self.assertEqual(3, max_as(3))
+        self.assertEqual(9, max_as(7))
+        self.assertEqual(27, max_as(11))
