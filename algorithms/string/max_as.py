@@ -4,35 +4,46 @@ def max_as(num):
     This algorithm is a solution to the max A's problem described on the IDeserve link: 
     http://www.ideserve.co.in/learn/how-to-print-maximum-number-of-a-using-given-four-keys.
 
-    This solution uses dynamic programming to find the number of A's that can be
-    produced in n keystrokes. There are four possible keystrokes: (1) Print 'A', (2) Select
-    ALL, (3) Copy, (4) Paste. From these four keystrokes, we can derive three possible
-    cases that can occur on the ith keystroke: (1) print an 'A', (2) Copy and paste 'A's, 
-    or (3) Paste 'A's. The third case requires the storage of the number of 'A's from the
-    most recent copy throughout the algorithm. 
+    The solution to this relies on the fact that the maximum number of A's that can be
+    written follows a pattern of printing some number of A's, selecting the printed A's,
+    copying the A's, and then repeatedly pasting the copy buffer. Additionally, another
+    critical point is that for keystrokes of 6 or less, the number of A's that can be
+    written is equal to the number of available keystrokes. 
+
+    For i keystrokes, where i is greater than 6, the maximum number of A's is given by
+    MAX(2 * OPT[i - 3], 3 * OPT[i - 4], ... , (i - 2) * OPT[1]). To understand this 
+    clearly, we'll look at the first and last terms of this equation: 
+
+    2 * OPT[i - 3] -> If we begin the CTRL-A, CTRL-C, CTRL-V process at the last 
+                      possible moment, we copy OPT[i - 3] one time. 
+    (i - 2) * OPT[1] -> If we begin the CTRL-A, CTRL-C, CTRL-V process at the earliest
+                        possible moment, we copy OPT[1] (i - 2) times, since we have
+                        to account for the CTRL-A and CTRL-C keystrokes.
 
     Time Complexity:
 
-    O(n). Requires traversal of all n values {1 ... n}.
+    O(n^2). For all n values, we trace back from {1 ... (n - 3)} to find the breaking
+    point at which we start the copy and paste process.
 
     Space Complexity:
 
-    O(1). This algorithm can be achieved in a fixed-sized list of four elements.
+    O(n). This algorithm uses an n-sized list to store the optimal value of A's that
+    can be achieved for all values {1 ... n}.
     """
 
-    OPT = [0] * 4
-    OPT[0] = 1
-    OPT[1] = 2
-    OPT[2] = 3
-    prev = 0
+    if num <= 6:
+        return num
 
-    for i in range(3, num):
-        max_val = max(1 + OPT[(i - 1) % 4], 
-                      2 * OPT[(i - 3) % 4], 
-                      prev + OPT[(i - 1) % 4])
+    OPT = [0] * (num)
 
-        if max_val == 2 * OPT[(i - 3) % 4]:
-            prev = OPT[(i - 3) % 4]
-        OPT[i % 4] = max_val
+    for i in range(6):
+        OPT[i] = i + 1 # store {1 ... 6}
 
-    return OPT[(num - 1) % 4]
+    for i in range(6, num):
+        OPT[i] = i + 1 # press 'A' i times
+        for j in range(i - 3, -1, -1):
+            temp = (i - j - 1) * OPT[j] # test all breakpoints
+            if temp > OPT[i]:
+                OPT[i] = temp # update OPT if temp is greater than current value
+
+    return OPT[num - 1]
