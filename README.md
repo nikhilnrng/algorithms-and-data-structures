@@ -6,6 +6,7 @@ Implementation of basic algorithms and data structures in Python.
 
 - Lists: `python -m unittest -v tests.data_structures.test_lists`
 - Heaps: `python -m unittest -v tests.data_structures.test_heaps`
+- Trees: `python -m unittest -v tests.data_structures.test_trees`
 - Sorting Methods: `python -m unittest -v tests.algorithms.test_sorts`
 - String Algorithms: `python -m unittest -v tests.algorithms.test_strings`
 - List Algorithms: `python -m unittest -v tests.algorithms.test_lists`
