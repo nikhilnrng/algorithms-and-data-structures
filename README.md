@@ -9,3 +9,4 @@ Implementation of basic algorithms and data structures in Python.
 - Sorting Methods: `python -m unittest -v tests.algorithms.test_sorts`
 - String Algorithms: `python -m unittest -v tests.algorithms.test_strings`
 - List Algorithms: `python -m unittest -v tests.algorithms.test_lists`
+- Dynamic Programming Algorithms: `python -m unittest -v tests.algorithms.test_dp`
